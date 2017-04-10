@@ -24,19 +24,16 @@ public class StringcounterApiController implements StringcounterApi {
 
 
     public ResponseEntity<String> stringcounterGet( @NotNull @ApiParam(value = "Input String", required = true) @RequestParam(value = "inputStr", required = true) String inputStr) {
-        // do some magic!
-
         return new ResponseEntity<String>(process(inputStr), HttpStatus.OK);
     }
 
     public ResponseEntity<String> stringcounterPost(@ApiParam(value = "Input String", required=true ) @RequestPart(value="inputStr", required=true)  String inputStr) {
-        // do some magic!
         return new ResponseEntity<String>(process(inputStr), HttpStatus.OK);
     }
 
     private String process(String msg) {
         if (msg == null || msg.isEmpty()) {
-            return "";
+            return "Test string is invalid";
         }
 
         int cnt[] = new int[128];
@@ -54,6 +51,10 @@ public class StringcounterApiController implements StringcounterApi {
                     maxChar = ch;
                 }
             }
+        }
+
+        if (builder.length() == 0) {
+            return "Test string is invalid";
         }
 
         return String.format("The letters are: ‘%1$s’. The most frequent letter is ‘%2$s’, and the frequency is %3$d",
