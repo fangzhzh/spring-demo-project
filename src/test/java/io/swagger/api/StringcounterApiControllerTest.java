@@ -25,14 +25,14 @@ public class StringcounterApiControllerTest {
     @org.junit.Test
     public void processTest() throws Exception {
         // invalid string
-        assertEquals(controller.process(null), "Test string is invalid");
-        assertEquals(controller.process(""), "Test string is invalid");
-        assertEquals(controller.process("123"), "Test string is invalid");
-        assertEquals(controller.process("123456789"), "Test string is invalid");
-        assertEquals(controller.process("1"), "Test string is invalid");
-        assertEquals(controller.process("!"), "Test string is invalid");
-        assertEquals(controller.process("!@#$%^&*()"), "Test string is invalid");
-        assertEquals(controller.process("!@#$%^&*("), "Test string is invalid");
+        assertEquals(controller.process(null), StringcounterApiController.INVALID_REQUEST_STRING);
+        assertEquals(controller.process(""), StringcounterApiController.INVALID_REQUEST_STRING);
+        assertEquals(controller.process("123"), StringcounterApiController.INVALID_REQUEST_STRING);
+        assertEquals(controller.process("123456789"), StringcounterApiController.INVALID_REQUEST_STRING);
+        assertEquals(controller.process("1"), StringcounterApiController.INVALID_REQUEST_STRING);
+        assertEquals(controller.process("!"), StringcounterApiController.INVALID_REQUEST_STRING);
+        assertEquals(controller.process("!@#$%^&*()"), StringcounterApiController.INVALID_REQUEST_STRING);
+        assertEquals(controller.process("!@#$%^&*("), StringcounterApiController.INVALID_REQUEST_STRING);
 
         // valid string
         assertEquals(controller.process("a"), String.format("The letters are: ‘%1$s’. The most frequent letter is ‘%2$s’, and the frequency is %3$d", "a", 'a', 1));

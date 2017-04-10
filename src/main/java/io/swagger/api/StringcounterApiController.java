@@ -13,21 +13,25 @@ import javax.validation.constraints.NotNull;
 
 @Controller
 public class StringcounterApiController implements StringcounterApi {
-
+    protected static final String INVALID_REQUEST_STRING = "Invalid request string";
 
 
     public ResponseEntity<String> stringcounterGet( @NotNull @ApiParam(value = "Input String", required = true) @RequestParam(value = "inputStr", required = true) String inputStr) {
-        return new ResponseEntity<String>(process(inputStr), HttpStatus.OK);
+        String retVal = process(inputStr);
+        HttpStatus status = retVal == INVALID_REQUEST_STRING ? HttpStatus.BAD_REQUEST : HttpStatus.OK;
+        return new ResponseEntity<String>(retVal, status);
     }
 
     public ResponseEntity<String> stringcounterPost(@ApiParam(value = "Input String", required=true ) @RequestPart(value="inputStr", required=true)  String inputStr) {
-        return new ResponseEntity<String>(process(inputStr), HttpStatus.OK);
+        String retVal = process(inputStr);
+        HttpStatus status = retVal == INVALID_REQUEST_STRING ? HttpStatus.BAD_REQUEST : HttpStatus.OK;
+        return new ResponseEntity<String>(retVal, status);
     }
 
     // parse string and return result
     protected String process(String msg) {
         if (msg == null || msg.isEmpty()) {
-            return "Test string is invalid";
+            return INVALID_REQUEST_STRING;
         }
 
         int cnt[] = new int[128];
@@ -48,7 +52,7 @@ public class StringcounterApiController implements StringcounterApi {
         }
 
         if (builder.length() == 0) {
-            return "Test string is invalid";
+            return INVALID_REQUEST_STRING;
         }
 
         return String.format("The letters are: ‘%1$s’. The most frequent letter is ‘%2$s’, and the frequency is %3$d",
