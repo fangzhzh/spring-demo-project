@@ -1,21 +1,14 @@
 package io.swagger.api;
 
 
-import io.swagger.annotations.*;
-
+import io.swagger.annotations.ApiParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-04-10T07:22:40.307Z")
 
 @Controller
@@ -31,7 +24,8 @@ public class StringcounterApiController implements StringcounterApi {
         return new ResponseEntity<String>(process(inputStr), HttpStatus.OK);
     }
 
-    private String process(String msg) {
+    // parse string and return result
+    protected String process(String msg) {
         if (msg == null || msg.isEmpty()) {
             return "Test string is invalid";
         }

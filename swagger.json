@@ -1,0 +1,62 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Latipay test API",
+        "description": "This is the API of Latipay test",
+        "version": "1.0.0"
+    },
+    "host": "localhost",
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/v1",
+    "produces": [
+        "text/plain"
+    ],
+    "paths": {
+        "/stringcounter": {
+            "get": {
+                "summary": "The service will handle the inputStr, respond and output the alphabet only characters with the original relative sequence, the highest frequent letter(s) and the number(s) of the letter(s) in the string.",
+                "description": "The service will handle the inputStr, respond and output the alphabet only characters with the original relative sequence, the highest frequent letter(s) and the number(s) of the letter(s) in the string.\n",
+                "parameters": [
+                    {
+                        "name": "inputStr",
+                        "in": "query",
+                        "description": "Input String",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Result of the counter",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "The service will handle the inputStr, respond and output the alphabet only characters with the original relative sequence, the highest frequent letter(s) and the number(s) of the letter(s) in the string.",
+                "description": "The service will handle the inputStr, respond and output the alphabet only characters with the original relative sequence, the highest frequent letter(s) and the number(s) of the letter(s) in the string.\n",
+                "parameters": [
+                    {
+                        "name": "inputStr",
+                        "in": "formData",
+                        "description": "Input String",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Result of the counter",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
